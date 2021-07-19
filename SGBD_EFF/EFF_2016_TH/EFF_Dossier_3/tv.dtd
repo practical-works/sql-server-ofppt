@@ -1,0 +1,16 @@
+<!ELEMENT emissions (satellite+)>
+
+<!ELEMENT satellite (chaine+)>
+<!ELEMENT chaine (frequence, polarisation, debit)>
+<!ELEMENT frequence (#PCDATA)>
+<!ELEMENT polarisation (#PCDATA)>
+<!ELEMENT debit (#PCDATA)>
+
+<!ATTLIST satellite 
+  nomsat CDATA #REQUIRED
+  orbite CDATA #REQUIRED
+>
+<!ATTLIST chaine
+  nomch CDATA #REQUIRED
+  dateLancement CDATA #IMPLIED
+>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>EFF_2016_Dossier_4</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		#tableProduits {
+			border: 1px solid black;
+		}
+		#tableProduits td {
+			border: 2px solid black;
+			padding: 0px 50px;
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	<h1>Vente Pizza</h1>
+	<table>
+		<tr>
+			<td>Nom du client : </td>
+			<td><input type="text" id="txtNom"></td>
+			
+		</tr>
+		<tr>
+			<td>Adresse : </td>
+			<td><input type="text" id="txtAdresse"></td>
+		</tr>
+	</table>
+	<h2>Produits à acheter</h2>
+	<table id="tableProduits">
+		<tr>
+			<td>Nom du produit</td>
+			<td>Prix unitaire en DH</td>
+			<td>Quantité</td>
+		</tr>
+		<tr>
+			<td>Pizza 4 fromages</td>
+			<td id="prix1">80</td>
+			<td><input type="text" id="txtQte1"></td>
+		</tr>
+		<tr>
+			<td>Pizza herbo</td>
+			<td id="prix2">75</td>
+			<td><input type="text" id="txtQte2"></td>
+		</tr>
+		<tr>
+			<td>Pizza viande hachée</td>
+			<td id="prix3">100</td>
+			<td><input type="text" id="txtQte3"></td>
+		</tr>
+		<tr>
+			<td>Pizza fruits de mer</td>
+			<td id="prix4">120</td>
+			<td><input type="text" id="txtQte4"></td>
+		</tr>
+	</table>
+	<br>
+	Paiement par : <br>
+	<input type="radio" id="rbCarte" value="carte" name="methode"><label for="rbCarte">Carte bancaire</label>
+	<input type="radio" id="rbCheque" value="cheque" name="methode"><label for="rbCheque">Chèque</label><br>
+	Numéro de la carte bancaire : <input type="text" id="txtNumCarte">
+	<br>
+	<input type="button" id="btnEnvoyer" value="Envoyer" onclick="valider()">
+	<br><br>
+	<i><b>Merci de votre visite, le montant total de votre commande est: </b></i>
+	<input type="text" id="txtMontant" readonly>
+
+	<script type="text/javascript">
+		function valider() {
+			var nom = document.getElementById("txtNom").value;
+			var addresse = document.getElementById("txtAdresse").value;
+			var qte1 = document.getElementById("txtQte1").value;
+			var qte2 = document.getElementById("txtQte2").value;
+			var qte3 = document.getElementById("txtQte3").value;
+			var qte4 = document.getElementById("txtQte4").value;
+			var methode = document.getElementByName("methode").value;
+			var numCarte = document.getElementById("txtNumCarte").value;
+			if (nom == "" || addresse == "" || methode == "" || (numCarte == "" && methode="carte")) {
+				alert("Des champs sont requis.");
+			} else if (qte1 == "" && qte2 == "" && qte3 == "" && qte4 == "") {
+				alert("Vous devez commmander au moins une pizza.");
+			} else if (isNaN(qte1) || isNaN(qte2) || isNaN(qte3) || isNaN(qte4) || isNaN(numCarte)) {
+				alert("Des champs sont invalides.");
+			} else {
+				var prix1 = document.getElementById("prix1").value;
+				var prix2 = document.getElementById("prix1").value;
+				var prix3 = document.getElementById("prix1").value;
+				var prix4 = document.getElementById("prix1").value;
+				var montant = 0;
+				if (qte1 != "") montant += qte1*prix1;
+				if (qte2 != "") montant += qte2*prix2; 
+				if (qte3 != "") montant += qte3*prix3; 
+				if (qte4 != "") montant += qte4*prix4;  
+				document.getElementById("txtMontant").value = montant;
+			}
+		}
+	</script>
+</body>
+</html>
